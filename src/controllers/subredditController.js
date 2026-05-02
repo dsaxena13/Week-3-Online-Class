@@ -12,10 +12,11 @@ export const getAllSubreddits = async (req, res) => {
       return res.status(404).json(output); // CANNOT BE FOUND
     }
     const output = { success: true, data: subreddits, message: "Subreddits fetched successfully" };
-    res.json(output);
+    return res.json(output);
   } catch (error) {
+    console.log(error);
     const output = { success: false, message: "Failed to fetch subreddits" };
-    res.status(500).json(output);
+    return res.status(500).json(output);
   }
    
 };
@@ -37,10 +38,11 @@ export const createSubreddit = async (req, res) => {
       return res.status(409).json(output); // CONFLICT
     }
     const output = { success: true, data: newSubreddit, message: "Subreddit created successfully" };
-    res.status(201).json(output); // CREATED
+    return res.status(201).json(output); // CREATED
   } catch(error) {
+    console.log(error);
     const output = { success: false, message: "Failed to create subreddit" };
-    res.status(500).json(output);
+    return res.status(500).json(output);
   }
 };
 
@@ -53,8 +55,9 @@ export const getSubredditWithThreads = async (req, res) => {
       return res.status(404).json(output); // CANNOT BE FOUND
     }
     const output = { success: true, data: subredditWithThreads, message: "Subreddit with threads fetched successfully" };
-    res.json(output);
+    return res.json(output);
   } catch(error) {
+    console.log(error);
     const output = { success: false, message: "Failed to fetch subreddit with threads" };
     return res.status(500).json(output);
   }
